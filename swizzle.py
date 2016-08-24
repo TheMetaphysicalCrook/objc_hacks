@@ -84,7 +84,7 @@ def swizzle(cls, selector, new_fcn,type_encoding=None,debug=False):
 		raise ValueError('%s has %i arguments (expected %i)' % (new_fcn, len(argspec.args), len(argtypes)))
 	for i,arg in enumerate(argtypes):
 		if arg==ObjCBlock:
-			print('replace block with voidp')
+			if debug: print('replace block with voidp')
 			argtypes[i]=ctypes.c_void_p
 	IMPTYPE = ctypes.CFUNCTYPE(restype, *argtypes)
 	imp = IMPTYPE(new_fcn)
